@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="card" (click)="flipCard()" [ngClass]="{'flipped': flipped}">
+    <div class="front">
+      <div class="card-title">Question</div>
+      <div class="card-content">Contenu de la face avant</div>
+    </div>
+    <div class="back">
+      <div class="card-title">Réponse</div>
+      <div class="card-content">Contenu de la face arrière</div>
+    </div>
+  </div>
+  <div class="input-container">
+    <input type="text" placeholder="Réponse">
+    <button>Répondre</button>
+  </div>
+</div>
