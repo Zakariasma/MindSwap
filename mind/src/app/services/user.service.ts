@@ -4,13 +4,14 @@ import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookieService:CookieService) {}
 
   createUser(data: User) {
     let params = new HttpParams()
@@ -28,6 +29,14 @@ login(data: User) {
 
   return this.http.post(`${environment.api}Auth/login`, {}, { params: params, responseType: 'text' });
 }
+
+getByName(username: string) {
+  let token = this.cookieService.get('token');
+  console.log(token);
+  let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<User>(`https://localhost:7150/name/${username}`, { headers: headers });
+}
+
 
 
 }

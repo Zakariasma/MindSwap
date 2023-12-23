@@ -81,6 +81,7 @@ export class LoginComponent {
         const decoded = jwtDecode<JwtPayload>(jwt);
         let name = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
         this.cookieService.set('name', name, date);
+        this.cookieService.set('token', jwt, date);
         this.resetNotification();
         this.responseNotification.toArray()[1].nativeElement.style.display = 'flex';
         this.waitResetNotification();
