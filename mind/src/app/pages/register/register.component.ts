@@ -57,7 +57,7 @@ export class RegisterComponent {
     this.resetNotification();
     this.responseNotification.toArray()[0].nativeElement.style.display = 'flex';
 
-    let user:User = new User(0,this.register.value.username!,this.register.value.mdp!,this.register.value.email!);
+    let user:User = new User(this.register.value.username!,this.register.value.mdp!,this.register.value.email!);
 
 
     this.userService.createUser(user).subscribe(
