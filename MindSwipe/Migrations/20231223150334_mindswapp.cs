@@ -5,10 +5,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MindSwipe.Migrations
 {
-    public partial class Initial : Migration
+    public partial class mindswapp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "CardUploadModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FrontImgName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    BackImgName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    CardID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CardUploadModel", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -68,7 +83,8 @@ namespace MindSwipe.Migrations
                         name: "FK_Card_Deck_DeckId",
                         column: x => x.DeckId,
                         principalTable: "Deck",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,12 +133,21 @@ namespace MindSwipe.Migrations
                 name: "IX_Result_UserId",
                 table: "Result",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Username",
+                table: "Users",
+                column: "Username",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Card");
+
+            migrationBuilder.DropTable(
+                name: "CardUploadModel");
 
             migrationBuilder.DropTable(
                 name: "Result");

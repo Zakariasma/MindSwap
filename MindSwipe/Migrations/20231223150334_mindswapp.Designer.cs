@@ -12,8 +12,8 @@ using MindSwipe.Data;
 namespace MindSwipe.Migrations
 {
     [DbContext(typeof(MindSwipeContext))]
-    [Migration("20231223141155_okkk")]
-    partial class okkk
+    [Migration("20231223150334_mindswapp")]
+    partial class mindswapp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
