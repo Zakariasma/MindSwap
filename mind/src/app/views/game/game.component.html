@@ -1,0 +1,19 @@
+<div class="container" *ngIf="!showResult">
+  <div class="counter"><h1>Question: {{ reponsesCorrectes }} / {{ cles.length }}</h1></div>
+  <div class="card" (click)="flipCard()" [ngClass]="{'flipped': flipped}" *ngIf="elementActuel">
+    <div class="front">
+      <div class="card-title">Question</div>
+      <div class="card-content">{{ cleActuelle }}</div>
+    </div>
+    <div class="back">
+      <div class="card-title">Réponse</div>
+      <div class="card-content">{{ elementActuel }}</div>
+    </div>
+  </div>
+  <div class="input-container">
+    <input type="text" placeholder="Réponse" [(ngModel)]="inputValue">
+    <button (click)="afficherElementSuivant()">Répondre</button>
+  </div>
+</div>
+
+<app-result *ngIf="showResult" [score]="reponsesCorrectes" [nombreQuestion]="cles.length"  (buttonPressed)="rejouer()"></app-result>

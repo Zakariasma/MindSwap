@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DeckListComponent } from './views/deck-list/deck-list.component';
 import { DeckListCardsComponent } from './views/deck-list-cards/deck-list-cards.component';
+import {GameComponent} from "./views/game/game.component";
+import {HistoriqueComponent} from "./views/historique/historique.component";
 
 const routes: Routes = [
   { path: 'deck-list', component: DeckListComponent},
   { path: 'deck-list-cards/:id', component: DeckListCardsComponent},
+  { path: 'game', component: GameComponent},
+  { path: 'historique', component: HistoriqueComponent},
   { path: '', redirectTo: '/deck-list', pathMatch: 'full' },
-  { path: '**', redirectTo: '/deck-list', pathMatch: 'full' }
+  { path: '**', redirectTo: '/deck-list', pathMatch: 'full' },
 ];
 
 @NgModule({

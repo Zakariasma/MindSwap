@@ -9,12 +9,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DeckListCardsComponent } from './views/deck-list-cards/deck-list-cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HistoriqueComponent } from './views/historique/historique.component';
+import { ResultComponent } from './views/result/result.component';
+import { GameComponent } from './views/game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckListComponent,
-    DeckListCardsComponent
+    DeckListCardsComponent,
+    HistoriqueComponent,
+    ResultComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

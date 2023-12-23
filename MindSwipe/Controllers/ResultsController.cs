@@ -52,6 +52,32 @@ namespace MindSwipe.Controllers
             return result;
         }
 
+        // GET: api/Results/5
+        [HttpGet("byUserId/{userId}")]
+
+        public async Task<ActionResult<IEnumerable<Result>>> GetResultsByUserId(int userId)
+        {
+            if (_context.Result == null)
+            {
+                return NotFound();
+            }
+
+            var results = await _context.Result
+                .Include(result => result.Deck)
+                .Include(result => result.User)
+                .Where(result => result.UserId == userId)
+                .ToListAsync();
+
+            if (results == null || !results.Any())
+            {
+                return NotFound();
+            }
+
+            return results;
+        }
+
+
+
         // PUT: api/Results/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
