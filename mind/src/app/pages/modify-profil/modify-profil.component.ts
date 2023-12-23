@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkWithHref, Router, NavigationEnd } from '@angular/
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { CookieService } from 'ngx-cookie-service';
+import { UserFull } from 'src/app/models/user_full';
 
 @Component({
   selector: 'app-modify-profil',
@@ -17,12 +18,13 @@ export class ModifyProfilComponent {
   @ViewChildren('responseNotification') responseNotification!: QueryList<ElementRef>;
 
   profilId!: number;
+  hashPassword!: string;
+  saltPassword!: string;
+  creationDate!: string;
 
   register = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]),
     email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]),
-    mdp: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
-    confirmeMdp: new FormControl('', [Validators.required, this.passwordMatchValidator])
   });
 
   constructor(private router: Router,private userService: UserService, private cookieService:CookieService) { }
@@ -32,10 +34,11 @@ export class ModifyProfilComponent {
       this.register.setValue({
         username: user.username,
         email: user.email,
-        mdp: '',
-        confirmeMdp: ''
       });
       this.profilId = user.id!;
+      this.hashPassword = user.passwordHash;
+      this.saltPassword = user.passwordSalt;
+      this.creationDate = user.creationDate;
     });
 
   }
@@ -72,17 +75,17 @@ export class ModifyProfilComponent {
     this.resetNotification();
     this.responseNotification.toArray()[0].nativeElement.style.display = 'flex';
 
-    let user:User = new User(this.register.value.username!,this.register.value.mdp!,this.register.value.email!, this.profilId);
-
+    let user:UserFull = new UserFull(this.register.value.username!,this.register.value.email!,this.creationDate,this.hashPassword,this.saltPassword,this.profilId);
 
     this.userService.updateUser(user).subscribe(
       response => {
         this.register.reset();
         this.resetNotification();
         this.responseNotification.toArray()[2].nativeElement.style.display = 'flex';
+        this.cookieService.set('name', user.username);
         this.waitResetNotification();
         setTimeout(() => {
-          this.router.navigate(['/connexion']);
+          this.router.navigate(['/']);
         }, 2000);
       },
       error => {
