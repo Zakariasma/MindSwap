@@ -35,10 +35,6 @@ export class LoginComponent {
 
   constructor(private router : Router,private userService: UserService, private cookieService: CookieService) {}
 
-  ngAfterViewInit(){
-    console.log("hello "+this.cookieService.get('name'));
-  }
-
   onFocus(nombre: number) {
     this.label.forEach((element, index) => {
       if (index == nombre) {

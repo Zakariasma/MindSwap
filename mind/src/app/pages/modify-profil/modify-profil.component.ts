@@ -16,6 +16,8 @@ export class ModifyProfilComponent {
   @ViewChildren('input') input!: QueryList<ElementRef>;
   @ViewChildren('responseNotification') responseNotification!: QueryList<ElementRef>;
 
+  profilId!: number;
+
   register = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]),
     email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]),
@@ -33,6 +35,7 @@ export class ModifyProfilComponent {
         mdp: '',
         confirmeMdp: ''
       });
+      this.profilId = user.id!;
     });
 
   }
@@ -69,10 +72,10 @@ export class ModifyProfilComponent {
     this.resetNotification();
     this.responseNotification.toArray()[0].nativeElement.style.display = 'flex';
 
-    let user:User = new User(this.register.value.username!,this.register.value.mdp!,this.register.value.email!);
+    let user:User = new User(this.register.value.username!,this.register.value.mdp!,this.register.value.email!, this.profilId);
 
 
-    this.userService.createUser(user).subscribe(
+    this.userService.updateUser(user).subscribe(
       response => {
         this.register.reset();
         this.resetNotification();

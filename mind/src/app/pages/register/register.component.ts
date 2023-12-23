@@ -67,7 +67,7 @@ export class RegisterComponent {
         this.responseNotification.toArray()[2].nativeElement.style.display = 'flex';
         this.waitResetNotification();
         setTimeout(() => {
-          this.router.navigate(['/connexion']);
+          this.router.navigate(['/login']);
         }, 2000);
       },
       error => {

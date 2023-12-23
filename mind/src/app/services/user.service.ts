@@ -37,6 +37,13 @@ getByName(username: string) {
   return this.http.get<User>(`https://localhost:7150/name/${username}`, { headers: headers });
 }
 
+updateUser(data: User) {
+  let token = this.cookieService.get('token');
+  let headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.put(`${environment.api}Users/${data.id}`, data, { headers: headers });
+}
+
+
 
 
 }
