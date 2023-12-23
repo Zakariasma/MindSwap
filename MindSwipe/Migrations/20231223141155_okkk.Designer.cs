@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MindSwipe.Data;
 
@@ -11,9 +12,10 @@ using MindSwipe.Data;
 namespace MindSwipe.Migrations
 {
     [DbContext(typeof(MindSwipeContext))]
-    partial class MindSwipeContextModelSnapshot : ModelSnapshot
+    [Migration("20231223141155_okkk")]
+    partial class okkk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

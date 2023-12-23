@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DeckListComponent } from './views/deck-list/deck-list.component';
+import { DeckListCardsComponent } from './views/deck-list-cards/deck-list-cards.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'deck-list', component: DeckListComponent},
+  { path: 'deck-list-cards/:id', component: DeckListCardsComponent},
+  { path: '', redirectTo: '/deck-list', pathMatch: 'full' },
+  { path: '**', redirectTo: '/deck-list', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,52 @@
+<!-- Affiche sous forme de cards  toutes les cartes d'un deck -->
+
+<div class="deck-container">
+  <div class="card" *ngFor="let card of cards">
+    <div class="card-content">
+      <h2 class="card-title">{{card.frontText}}</h2>
+      <p class="card-text">{{card.backText}}</p>
+      <button class="btn-edit" (click)="editCard(card)">Edit</button>
+      <button class="btn-delete" (click)="deleteCard(card)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Button to Open the Modal -->
+<button (click)="openCreateCardModal()">Create Card</button>
+
+<!-- The Modal for Create Card -->
+<div id="createCardModal" class="modal" [ngStyle]="{'display': createCardModalOpen ? 'block' : 'none'}">
+  <div class="modal-content">
+    <span class="close" (click)="closeCreateCardModal()">×</span>
+    <form #cardForm="ngForm" (ngSubmit)="createCard(cardForm.value)">
+      <div class="form-group">
+        <label for="frontText">Front Text:</label>
+        <input type="text" id="frontText" name="frontText" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="backText">Back Text:</label>
+        <input type="text" id="backText" name="backText" ngModel>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- The Modal for Add Photos -->
+<div id="addPhotosModal" class="modal" [ngStyle]="{'display': addPhotosModalOpen ? 'block' : 'none'}">
+  <div class="modal-content">
+    <span class="close" (click)="closeAddPhotosModal()">×</span>
+    <form #photoForm="ngForm" (ngSubmit)="addPhotos(photoForm.value)">
+      <!-- Your form fields for adding photos -->
+      <div class="form-group">
+        <label for="imgFront">Front image</label>
+        <input type="file" id="imgFront" name="imgFront" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="imgBack">Back image</label>
+        <input type="file" id="imgBack" name="imgBack" ngModel>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

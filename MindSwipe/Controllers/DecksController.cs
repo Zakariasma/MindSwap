@@ -33,6 +33,17 @@ namespace MindSwipe.Controllers
             return await _context.Deck.Include(deck => deck.User).ToListAsync();
         }
 
+        // GET: api/Decks/User/{id}
+        [HttpGet("User/{id}")]
+        public async Task<ActionResult<IEnumerable<Deck>>> GetDecksByUserId(int id)
+        {
+            if (_context.Deck == null)
+            {
+                return NotFound();
+            }
+            return await _context.Deck.Where(deck => deck.UserID == id).Include(deck => deck.User).ToListAsync();
+        }
+
         // GET: api/Decks/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Deck>> GetDeck(int id)

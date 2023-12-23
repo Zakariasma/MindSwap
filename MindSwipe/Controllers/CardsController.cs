@@ -13,7 +13,7 @@ namespace MindSwipe.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CardsController : ControllerBase
     {
         private readonly MindSwipeContext _context;
@@ -33,6 +33,18 @@ namespace MindSwipe.Controllers
           }
             return await _context.Card.Include(card => card.Deck).Include(card => card.Deck.User).ToListAsync();
         }
+
+        // GET: api/Cards/Deck/{id}
+        [HttpGet("Deck/{id}")]
+        public async Task<ActionResult<IEnumerable<Card>>> GetCardsByDeckId(int id)
+        {
+            if (_context.Card == null)
+            {
+                return NotFound();
+            }
+            return await _context.Card.Where(card => card.DeckId == id).Include(card => card.Deck).Include(card => card.Deck.User).ToListAsync();
+        }
+
 
         // GET: api/Cards/5
         [HttpGet("{id}")]
