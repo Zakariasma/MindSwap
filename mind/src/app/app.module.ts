@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeMenuComponent } from './components/home-menu/home-menu.component';
 import { GamePageComponent } from './components/game-page/game-page.component';
 import { ResultPageComponent } from './components/result-page/result-page.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ResultPageComponent } from './components/result-page/result-page.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
