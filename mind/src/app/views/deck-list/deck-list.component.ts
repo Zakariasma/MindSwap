@@ -16,6 +16,7 @@ export class DeckListComponent {
   modalOpen = false;
   modalOpenEdit = false;
   selectedDeck!: Deck;
+  defaultTitle: string = 'Default Title';
 
   constructor(private deckListService: DeckListService, private router: Router) { }
 
@@ -37,39 +38,42 @@ export class DeckListComponent {
 
   openModalEdit(deck: Deck): void {
     this.selectedDeck = deck;
-    this.modalOpenEdit = true;
+    this.modalOpenEdit = true; // Ajoutez cette ligne
   }
+
 
   closeModalEdit(): void {
     this.modalOpenEdit = false;
   }
 
-  createDeck(formValue: any): void {
-    if (formValue.title === '') {
+  createDeck(event: any): void {
+    const title = event.toString();
+    if (title === '') {
       return;
     }
     var deck = new Deck(
       0,
-      formValue.title,
+      title,
       new Date(),
       new Date(),
       this.user,
       1 // Remplacer cette valeur par this.user.id
-      );
+    );
     this.deckListService.createDeck(deck).subscribe(deck => {
       this.decks.push(deck);
       this.closeModal();
     });
   }
 
-  updateDeck(formValue: any): void {
-    if (formValue.title == '') {
-      console.log(formValue.title);
+
+  updateDeck(event: any): void {
+    const title = event.toString();
+    if (title === '') {
       return;
     }
     var deck = new Deck(
       this.selectedDeck.id,
-      formValue.title,
+      title,
       new Date(),
       new Date(),
       this.user,

@@ -9,12 +9,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DeckListCardsComponent } from './views/deck-list-cards/deck-list-cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DeckCardComponent } from './components/deck-card/deck-card.component';
+import { UniversalModalComponent } from './components/universal-modal/universal-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckListComponent,
-    DeckListCardsComponent
+    DeckListCardsComponent,
+    DeckCardComponent,
+    UniversalModalComponent,
   ],
   imports: [
     BrowserModule,
