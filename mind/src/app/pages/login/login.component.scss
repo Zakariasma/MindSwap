@@ -1,0 +1,544 @@
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-justify{
+  display: flex;
+  justify-content: center;
+}
+
+.flex-align{
+  display: flex;
+  align-items: center;
+}
+
+
+.login{
+  @extend .flex-center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.loginForm{
+  display: flex;
+  width: 70%;
+  height: 70%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.formulaireData{
+  display: flex;
+  width: 60%;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
+}
+
+.logoLizaine{
+  display: flex;
+  width: 100%;
+  height: 15%;
+
+  .logoCase{
+    @extend .flex-center;
+    width: 15%;
+    height: 100%;
+
+    img{
+      width: auto;
+      height: 95%;
+    }
+  }
+}
+
+.titreForm{
+  display: flex;
+  width: 100%;
+  height: 15%;
+  align-items: center;
+
+  h1{
+    font-size: 2em;
+    font-weight: 500;
+    margin-left: 3%;
+  }
+
+  hr{
+    width: 7%;
+    margin-left: 2%;
+    margin-top: 1%;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+}
+
+form{
+  display: flex;
+  width: 100%;
+  height: 55%;
+  flex-direction: column;
+
+  .inputFirst{
+    display: flex;
+    width: 80%;
+    margin-left: 3%;
+    height: 25%;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+
+    input{
+      width: 100%;
+      height: 50%;
+      border: 2px solid rgba(0, 0, 0, 0.322);
+      border-radius: 5px;
+      z-index: 1;
+      padding: 10px;
+      background-color: transparent;
+      font-size: 1em;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input:hover{
+      border: 2px solid black;
+    }
+
+    input:focus{
+      outline: none;
+      box-shadow: rgba(0, 0, 0, 0.555) 0px 3px 6px, rgba(0, 0, 0, 0.685) 0px 3px 6px;
+    }
+
+
+    label{
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+      left: 10px;
+      color: rgba(0, 0, 0, 0.322);
+      background-color: white;
+      z-index: 0;
+    }
+
+    i{
+      position: absolute;
+      right: 0px;
+      color: rgba(0, 0, 0, 0.322);
+      font-size: 1.2em;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input:focus ~ i { color: black; }
+
+
+  }
+
+  .marginInput{
+    margin-bottom: 20px;
+  }
+}
+
+.forgotPassword{
+  display: flex;
+  width: 84%;
+  margin-left: 3%;
+  height: 15%;
+  align-items: center;
+
+  a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.685);
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+
+  a:hover{
+    color: black;
+  }
+
+  p{
+    font-size: 1em;
+    font-weight: 500;
+  }
+}
+
+.sendContainerLoad{
+  display: flex;
+  width: 90%;
+  margin-left: 3%;
+  height: 22%;
+  margin-top: 4%;
+  align-items: center;
+
+  .boutonEnvoyer{
+    @extend .flex-center;
+    width: 30%;
+    height: 95%;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.322);
+    color: rgba(0, 0, 0, 0.795);
+
+    i{
+      margin-left: 10px;
+      margin-top: 2px;
+    }
+  }
+
+  .boutonEnvoyer:hover{
+      border: 2px solid black;
+      color: black;
+  }
+
+  .load{
+    @extend .flex-center;
+    width: 15%;
+    height: 100%;
+  }
+
+  .loader, .check,.not{
+    display: none;
+    font-size: 2em;
+  }
+}
+
+
+
+
+.rs{
+  display: flex;
+  width: 80%;
+  height: 5%;
+  margin-left: 3%;
+  margin-top: 2%;
+  position: absolute;
+  bottom: 1%;
+}
+
+.rsDirection{
+  @extend .flex-center;
+  width: 6%;
+  height: 100%;
+  margin-right: 5px;
+  transition: all 0.2s ease-in-out;
+
+  img{
+    width: 70%;
+    height: auto;
+    filter: invert(100%);
+  }
+}
+
+.rsDirection:hover{
+  transform: scale(1.2);
+}
+
+.inscriptionRedirection{
+  display: flex;
+  width: 40%;
+  height: 100%;
+
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.invalid {
+  border-color: red !important;
+}
+
+
+
+
+@media (max-width:320px) and (min-width: 0px) {
+
+  .login{
+    height: 100vh;
+    margin-top: 50px;
+  }
+
+  .loginForm{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    flex-direction: column;
+  }
+
+  .formulaireData{
+    width: 100%;
+    height: 100%;
+  }
+
+  .logoLizaine{
+    display: none;
+  }
+
+  form{
+    width: 100%;
+    height: 75%;
+    flex-direction: column;
+
+    .inputFirst{
+      height: 20%;
+    }
+  }
+
+  .sendContainerLoad{
+    min-height: 15%;
+    flex-wrap: wrap;
+
+
+    .boutonEnvoyer{
+      width: 50%;
+      height: 65%;
+    }
+  }
+
+  .rs{
+    display: none;
+  }
+
+  .inscriptionRedirection{
+    display: none
+  }
+
+
+  .forgotPassword{
+    p{
+      font-size: 0.8em;
+    }
+  }
+
+}
+
+@media (max-width:480px)  and (min-width: 321px) {
+
+  .login{
+    height: 100vh;
+    margin-top: 50px;
+  }
+
+  .loginForm{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    flex-direction: column;
+  }
+
+  .formulaireData{
+    width: 100%;
+    height: 100%;
+  }
+
+  .logoLizaine{
+    display: none;
+  }
+
+  form{
+    width: 100%;
+    height: 75%;
+    flex-direction: column;
+
+    .inputFirst{
+      height: 20%;
+    }
+  }
+
+  .sendContainerLoad{
+    min-height: 15%;
+    flex-wrap: wrap;
+
+
+    .boutonEnvoyer{
+      width: 50%;
+      height: 65%;
+    }
+  }
+
+  .rs{
+    display: none;
+  }
+
+  .inscriptionRedirection{
+    display: none
+  }
+
+}
+
+@media (max-width:960px) and (min-width:600px){
+
+  .login{
+    height: 100vh;
+    margin-top: 50px;
+  }
+
+  .loginForm{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    flex-direction: column;
+  }
+
+  .formulaireData{
+    width: 100%;
+    height: 100%;
+  }
+
+  .logoLizaine{
+    display: none;
+  }
+
+  form{
+    width: 100%;
+    height: 75%;
+    flex-direction: column;
+
+    .inputFirst{
+      height: 20%;
+    }
+  }
+
+  .sendContainerLoad{
+    min-height: 15%;
+    flex-wrap: wrap;
+
+
+    .boutonEnvoyer{
+      width: 50%;
+      height: 65%;
+    }
+  }
+
+  .rs{
+    display: none;
+  }
+
+  .inscriptionRedirection{
+    display: none
+  }
+
+
+}
+
+@media (max-width:1300px) and (min-width:960px){
+
+  .login{
+    height: 100vh;
+    margin-top: 50px;
+  }
+
+  .loginForm{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    flex-direction: column;
+  }
+
+  .formulaireData{
+    width: 100%;
+    height: 100%;
+  }
+
+  .logoLizaine{
+    display: none;
+  }
+
+  form{
+    width: 100%;
+    height: 75%;
+    flex-direction: column;
+
+    .inputFirst{
+      height: 20%;
+    }
+  }
+
+  .sendContainerLoad{
+    min-height: 15%;
+    flex-wrap: wrap;
+
+
+    .boutonEnvoyer{
+      width: 30%;
+      height: 65%;
+    }
+  }
+
+  .rs{
+    display: none;
+  }
+
+  .inscriptionRedirection{
+    display: none
+  }
+
+
+}
+
+@media (max-width:960px) and (min-width:500px) and (orientation: landscape){
+
+  .login{
+    height: 200vh;
+    margin-top: 50px;
+  }
+
+  .loginForm{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    flex-direction: column;
+  }
+
+  .formulaireData{
+    width: 100%;
+    height: 100%;
+  }
+
+  .logoLizaine{
+    display: none;
+  }
+
+  form{
+    width: 100%;
+    height: 75%;
+    flex-direction: column;
+
+    .inputFirst{
+      height: 20%;
+    }
+  }
+
+  .sendContainerLoad{
+    min-height: 15%;
+    flex-wrap: wrap;
+
+
+    .boutonEnvoyer{
+      width: 30%;
+      height: 65%;
+    }
+  }
+
+  .rs{
+    display: none;
+  }
+
+  .inscriptionRedirection{
+    display: none
+  }
+
+
+}
+

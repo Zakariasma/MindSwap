@@ -21,4 +21,13 @@ export class UserService {
     return this.http.post(`${environment.api}Auth/register`, {}, { params: params });
 }
 
+login(data: User) {
+  let params = new HttpParams()
+      .set('username', data.username)
+      .set('password', data.password);
+
+  return this.http.post(`${environment.api}Auth/login`, {}, { params: params, responseType: 'text' });
+}
+
+
 }
