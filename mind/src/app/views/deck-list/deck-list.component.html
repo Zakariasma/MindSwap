@@ -5,11 +5,9 @@
   </div>
 </div>
 
-
-<!-- Button to Open the Modal -->
-<button (click)="openModal()">Create Deck</button>
-
-
+<div class="btnAddDeck">
+  <button (click)="openModal()">Create Deck</button>
+</div>
 
 <app-universal-modal [isOpen]="modalOpen" [title]="'Create Deck'" [content]="defaultTitle" (submitEvent)="createDeck($event)" (closeEvent)="closeModal()"></app-universal-modal>
 

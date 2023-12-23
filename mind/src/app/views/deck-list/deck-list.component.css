@@ -41,10 +41,36 @@
 
 .containeurDeck{
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
   align-items: start;
 }
 
+.btnAddDeck{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+
+.btnAddDeck button{
+  width: 100%;
+  height: 100%;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.btnAddDeck button:hover{
+  background-color: #45a049;
+}

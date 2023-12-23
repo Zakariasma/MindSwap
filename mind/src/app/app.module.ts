@@ -11,6 +11,7 @@ import { DeckListCardsComponent } from './views/deck-list-cards/deck-list-cards.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeckCardComponent } from './components/deck-card/deck-card.component';
 import { UniversalModalComponent } from './components/universal-modal/universal-modal.component';
+import { UniversalCardComponent } from './components/universal-card/universal-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { UniversalModalComponent } from './components/universal-modal/universal-
     DeckListCardsComponent,
     DeckCardComponent,
     UniversalModalComponent,
+    UniversalCardComponent,
   ],
   imports: [
     BrowserModule,

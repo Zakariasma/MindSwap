@@ -1,20 +1,27 @@
 <!-- Affiche sous forme de cards  toutes les cartes d'un deck -->
 
 <div class="deck-container">
-  <div class="card" *ngFor="let card of cards">
-    <div class="card-content">
-      <h2 class="card-title">{{card.frontText}}</h2>
-      <img *ngIf="card.frontImg" class="card-img" src="https://localhost:7150/Images/{{card.frontImg}}" alt="Card image cap">
-      <p class="card-text">{{card.backText}}</p>
-      <img *ngIf="card.backImg" class="card-img" src="https://localhost:7150/Images/{{card.backImg}}" alt="Card image cap">
-      <button class="btn-edit" (click)="openEditModal(card)">Edit Card</button>
-      <button class="btn-delete" (click)="deleteCard(card)">Delete</button>
+  <div class="flip-card" *ngFor="let card of cards">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <h2 class="card-title">{{card.frontText}}</h2>
+        <img *ngIf="card.frontImg" class="card-img" src="https://localhost:7150/Images/{{card.frontImg}}" alt="Card image cap">
+      </div>
+      <div class="flip-card-back">
+        <h2 class="card-text">{{card.backText}}</h2>
+        <img *ngIf="card.backImg" class="card-img" src="https://localhost:7150/Images/{{card.backImg}}" alt="Card image cap">
+      </div>
     </div>
+    <button class="btn-edit" (click)="openEditModal(card)">Edit Card</button>
+      <button class="btn-delete" (click)="deleteCard(card)">Delete</button>
   </div>
 </div>
 
-<!-- Button to Open the Modal -->
-<button (click)="openModal()">Create Card</button>
+<div class="btnAddCard">
+  <button (click)="openModal()">Create Card</button>
+</div>
+
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal" [ngStyle]="{'display': modalOpen ? 'block' : 'none'}">

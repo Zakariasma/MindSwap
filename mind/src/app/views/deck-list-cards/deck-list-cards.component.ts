@@ -38,6 +38,12 @@ export class DeckListCardsComponent {
     });
   }
 
+  flipped = false;
+
+  flipCard() {
+    this.flipped = !this.flipped;
+  }
+
   openModal(): void {
     this.modalOpen = true;
   }
