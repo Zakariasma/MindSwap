@@ -24,8 +24,8 @@ export class DeckListService {
     return this.http.post<Deck>(`${this.baseUrl}`, deck);
   }
 
-  updateDeck(id: number, value: Deck): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  updateDeck(id: number, value: Deck): Observable<Deck> {
+    return this.http.put<Deck>(`${this.baseUrl}/${id}`, value);
   }
 
   deleteDeck(id: number): Observable<any> {

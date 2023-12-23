@@ -2,12 +2,16 @@
 <div *ngFor="let deck of decks">
   <h2>{{ deck.title }}</h2>
   <a (click)="goToDeckListCards(deck.id) ">View</a>
+  <!-- Button to Edit the Modal -->
+  <button (click)="openModalEdit(deck)">Edit Deck</button>
   <button (click)="deleteDeck(deck.id)">Delete</button>
 </div>
 
 
 <!-- Button to Open the Modal -->
 <button (click)="openModal()">Create Deck</button>
+
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal" [ngStyle]="{'display': modalOpen ? 'block' : 'none'}">
@@ -17,6 +21,20 @@
       <div class="form-group">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" ngModel>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div id="myEditModal" class="modal" [ngStyle]="{'display': modalOpenEdit ? 'block' : 'none'}">
+  <div class="modal-content">
+    <span class="close" (click)="closeModalEdit()">×</span>
+    <form #deckFormEdit="ngForm" (ngSubmit)="updateDeck(deckFormEdit.value)">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input *ngIf="selectedDeck" type="text" id="title" name="title" [(ngModel)]="selectedDeck.title">
       </div>
       <button type="submit">Submit</button>
     </form>

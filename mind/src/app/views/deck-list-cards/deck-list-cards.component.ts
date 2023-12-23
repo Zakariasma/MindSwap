@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DeckListCardsService } from '../../_services/deck-list-cards.service';
 import { Deck } from 'src/app/models/deck';
 import { User } from 'src/app/models/user';
 import { Card } from 'src/app/models/card';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { CardUploadService } from 'src/app/_services/card-upload.service';
 
 
 @Component({
@@ -17,10 +18,16 @@ export class DeckListCardsComponent {
   cards!: Card[];
   user!: User;
   deckId!: number;
-  createCardModalOpen = false;
-  addPhotosModalOpen = false;
+  modalOpen = false;
+  editCardModalOpen = false;
+  selectedCard!: Card;
+  imageFront!: string;
+  imageBack!: string;
 
-  constructor(private deckListCardsService: DeckListCardsService, private router: Router, private route: ActivatedRoute) { }
+  @ViewChild('frontPhoto') frontPhoto!: ElementRef;
+  @ViewChild('backPhoto') backPhoto!: ElementRef;
+
+  constructor(private deckListCardsService: DeckListCardsService, private router: Router, private route: ActivatedRoute, private cardUploadService: CardUploadService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -28,66 +35,93 @@ export class DeckListCardsComponent {
     });
     this.deckListCardsService.getCards(this.deckId).subscribe(cards => {
       this.cards = cards;
-      console.log(this.cards);
     });
   }
 
-  openCreateCardModal(): void {
-    this.createCardModalOpen = true;
+  openModal(): void {
+    this.modalOpen = true;
   }
 
-  closeCreateCardModal(): void {
-    this.createCardModalOpen = false;
+  closeModal(): void {
+    this.modalOpen = false;
   }
 
-  openAddPhotosModal(): void {
-    this.addPhotosModalOpen = true;
+  openEditModal(card: Card): void {
+    this.selectedCard = card;
+    this.editCardModalOpen = true;
   }
 
-  closeAddPhotosModal(): void {
-    this.addPhotosModalOpen = false;
+  closeEditModal(): void {
+    this.editCardModalOpen = false;
   }
 
-  createCard(formValue: any): void {
+  editCard(formValue: any): void {
+    const frontPhotoFile = this.frontPhoto.nativeElement.files[0];
+    const backPhotoFile = this.backPhoto.nativeElement.files[0];
     var card = new Card(
-      0,
+      this.selectedCard.id,
       formValue.frontText,
       formValue.backText,
-      "",
-      "",
+      this.selectedCard.frontImg,
+      this.selectedCard.backImg,
+      this.selectedCard.creationDate,
       new Date(),
-      new Date(),
-      this.deckId,
+      this.selectedCard.deckId,
     );
 
-    console.log(card);
-    this.deckListCardsService.createCard(card).subscribe(card => {
-      this.cards.push(card);
-      this.closeCreateCardModal();
-      this.openAddPhotosModal();
-    });
-  }
+    var formData = new FormData();
+    formData.append('FrontImg', frontPhotoFile);
+    formData.append('FrontImgName', card.frontImg);
+    formData.append('BackImg', backPhotoFile);
+    formData.append('BackImgName', card.backImg);
+    formData.append('CardId', card.id.toString());
 
-  addPhotos(formValue: any): void {
-    // Your code to add photos
-    console.log(formValue);
-    this.closeAddPhotosModal();
+
+    console.log(card);
+    this.deckListCardsService.updateCard(card.id, card).subscribe(updatedCard => {
+      this.cardUploadService.uploadCard(formData).subscribe((value) => {
+        card.frontImg = value.frontImgName;
+        card.backImg = value.backImgName;
+      });
+      this.closeEditModal();
+
+    });
+
+    // Supprimez l'ancienne carte du tableau
+    this.cards = this.cards.filter(c => c.id !== card.id);
+
+    // Ajoutez la nouvelle carte au tableau
+    this.cards.push(card);
+    console.log(this.cards);
+
+    this.closeEditModal();
+
+}
+
+
+  createCard(formValue: any): void {
+    if(formValue.frontText != "" && formValue.backText != "") {
+      var card = new Card(
+        0,
+        formValue.frontText,
+        formValue.backText,
+        "",
+        "",
+        new Date(),
+        new Date(),
+        this.deckId,
+      );
+      this.deckListCardsService.createCard(card).subscribe(card => {
+        this.cards.push(card);
+        this.closeModal();
+      });
+    }
   }
 
   deleteCard(card: Card): void {
     this.deckListCardsService.deleteCard(card.id).subscribe(() => {
-      this.cards = this.cards.filter(c => c !== card);
+      this.cards = this.cards.filter(c => c.id !== card.id);
     });
-  }
-
-  editCard(card: Card): void {
-    localStorage.setItem('card', JSON.stringify(card));
-    this.router.navigate(['/card']);
-  }
-
-  logout(): void {
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
   }
 }
 

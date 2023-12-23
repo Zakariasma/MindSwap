@@ -81,55 +81,57 @@ namespace MindSwipe.Controllers
             return NoContent();
         }
 
-        // POST: api/CardUploadModels
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<CardUploadModel>> PostCardUploadModel([FromForm]CardUploadModel cardUploadModel)
+        public async Task<ActionResult<CardUploadModel>> PostCardUploadModel([FromForm] CardUploadModel cardUploadModel)
         {
-          if (_context.CardUploadModel == null)
-          {
-              return Problem("Entity set 'MindSwipeContext.CardUploadModel'  is null.");
-          }
-          // avant tout, on doit vérifier que la carte portant le même id que l'upload existe ( on choisi l'id lors de l'upload)
-          Card cardFind = _context.Card.Find(cardUploadModel.CardID);
+            if (_context.CardUploadModel == null)
+            {
+                return Problem("Entity set 'MindSwipeContext.CardUploadModel'  is null.");
+            }
+
+            Card cardFind = _context.Card.Find(cardUploadModel.CardID);
             if (cardFind == null)
             {
                 return Problem("The card don't exist");
             }
-            // si la carte existe, on continue
+
             string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Images");
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
-            // Générez des noms de fichiers uniques pour les images.
-            var extensionFrontImg = "." + cardUploadModel.FrontImg.FileName.Split('.')[cardUploadModel.FrontImg.FileName.Split('.').Length - 1];
-            var extensionBackImg = "." + cardUploadModel.BackImg.FileName.Split('.')[cardUploadModel.BackImg.FileName.Split('.').Length - 1];
-            cardUploadModel.FrontImgName = DateTime.Now.Ticks.ToString() + extensionFrontImg;
-            cardUploadModel.BackImgName = DateTime.Now.Ticks.ToString() + extensionBackImg;
-            // Construisez les chemins complets pour les fichiers d'image.
-            string frontImgPath = Path.Combine(uploadsFolder,cardUploadModel.FrontImgName);
-            string backImgPath = Path.Combine(uploadsFolder,cardUploadModel.BackImgName);
-            // Enregistrez les fichiers d'image sur le serveur.
-            using (var frontImgStream = new FileStream(frontImgPath, FileMode.Create))
+
+            if (cardUploadModel.FrontImg != null)
             {
-                await cardUploadModel.FrontImg.CopyToAsync(frontImgStream);
+                var extensionFrontImg = "." + cardUploadModel.FrontImg.FileName.Split('.')[cardUploadModel.FrontImg.FileName.Split('.').Length - 1];
+                cardUploadModel.FrontImgName = DateTime.Now.Ticks.ToString() + extensionFrontImg;
+                string frontImgPath = Path.Combine(uploadsFolder, cardUploadModel.FrontImgName);
+                using (var frontImgStream = new FileStream(frontImgPath, FileMode.Create))
+                {
+                    await cardUploadModel.FrontImg.CopyToAsync(frontImgStream);
+                }
+                cardFind.FrontImg = cardUploadModel.FrontImgName;
             }
 
-            using (var backImgStream = new FileStream(backImgPath, FileMode.Create))
+            if (cardUploadModel.BackImg != null)
             {
-                await cardUploadModel.BackImg.CopyToAsync(backImgStream);
+                var extensionBackImg = "." + cardUploadModel.BackImg.FileName.Split('.')[cardUploadModel.BackImg.FileName.Split('.').Length - 1];
+                cardUploadModel.BackImgName = DateTime.Now.Ticks.ToString() + extensionBackImg;
+                string backImgPath = Path.Combine(uploadsFolder, cardUploadModel.BackImgName);
+                using (var backImgStream = new FileStream(backImgPath, FileMode.Create))
+                {
+                    await cardUploadModel.BackImg.CopyToAsync(backImgStream);
+                }
+                cardFind.BackImg = cardUploadModel.BackImgName;
             }
 
-            // On ajoute ensuite les filenames dans la carte associée. 
-            cardFind.FrontImg = cardUploadModel.FrontImgName;
-            cardFind.BackImg = cardUploadModel.BackImgName;
             _context.Card.Update(cardFind);
             _context.CardUploadModel.Add(cardUploadModel);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCardUploadModel", new { id = cardUploadModel.Id }, cardUploadModel);
         }
+
 
         // DELETE: api/CardUploadModels/5
         [HttpDelete("{id}")]
@@ -139,6 +141,7 @@ namespace MindSwipe.Controllers
             {
                 return NotFound();
             }
+
             var cardUploadModel = await _context.CardUploadModel.FindAsync(id);
             if (cardUploadModel == null)
             {

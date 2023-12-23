@@ -98,22 +98,26 @@ namespace MindSwipe.Controllers
         [HttpPost]
         public async Task<ActionResult<Deck>> PostDeck(Deck deck)
         {
-          if (_context.Deck == null)
-          {
-              return Problem("Entity set 'MindSwipeContext.Deck'  is null.");
-          }
-            
-            if (deck.User == null)
+            if(deck.Title != null) 
             {
-                Users userFind = _context.Users.Find(deck.UserID);
-                if (userFind != null)
+                if (_context.Deck == null)
                 {
-                    deck.User = userFind;
+                    return Problem("Entity set 'MindSwipeContext.Deck'  is null.");
                 }
+
+                if (deck.User == null)
+                {
+                    Users userFind = _context.Users.Find(deck.UserID);
+                    if (userFind != null)
+                    {
+                        deck.User = userFind;
+                    }
+                }
+                _context.Deck.Add(deck);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetDeck", new { id = deck.Id }, deck);
             }
-            _context.Deck.Add(deck);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetDeck", new { id = deck.Id }, deck);
+            return BadRequest();
         }
 
         // DELETE: api/Decks/5

@@ -105,18 +105,22 @@ namespace MindSwipe.Controllers
               return Problem("Entity set 'MindSwipeContext.Card'  is null.");
           }
 
-            if (card.Deck == null)
-            {
-                Deck deckFind = _context.Deck.Find(card.DeckId);
-                if (deckFind != null)
+          if(card.FrontText != "" && card.BackText != "") 
+          {
+                if (card.Deck == null)
                 {
-                    card.Deck = deckFind;
+                    Deck deckFind = _context.Deck.Find(card.DeckId);
+                    if (deckFind != null)
+                    {
+                        card.Deck = deckFind;
+                    }
                 }
-            }
-            _context.Card.Add(card);
-            await _context.SaveChangesAsync();
+                _context.Card.Add(card);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCard", new { id = card.Id }, card);
+                return CreatedAtAction("GetCard", new { id = card.Id }, card);
+            }
+           return BadRequest();
         }
         
         // DELETE: api/Cards/5
@@ -133,7 +137,29 @@ namespace MindSwipe.Controllers
                 return NotFound();
             }
 
+            var imageFront = Path.Combine("Images", card.FrontImg);
+
+            if (System.IO.File.Exists(imageFront))
+            {
+                System.IO.File.Delete(imageFront);
+            }
+
+            var imageBack = Path.Combine("Images", card.BackImg);
+
+            if (System.IO.File.Exists(imageBack))
+            {
+                System.IO.File.Delete(imageBack);
+            }
+
             _context.Card.Remove(card);
+
+            // Récupérer le CardUploadModel associé
+            var cardUploadModel = await _context.CardUploadModel.FirstOrDefaultAsync(c => c.CardID == id);
+            if (cardUploadModel != null)
+            {
+                _context.CardUploadModel.Remove(cardUploadModel);
+            }
+
             await _context.SaveChangesAsync();
 
             return NoContent();

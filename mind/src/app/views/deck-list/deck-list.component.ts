@@ -14,6 +14,8 @@ export class DeckListComponent {
   decks!: Deck[];
   user!: User;
   modalOpen = false;
+  modalOpenEdit = false;
+  selectedDeck!: Deck;
 
   constructor(private deckListService: DeckListService, private router: Router) { }
 
@@ -33,7 +35,19 @@ export class DeckListComponent {
     this.modalOpen = false;
   }
 
+  openModalEdit(deck: Deck): void {
+    this.selectedDeck = deck;
+    this.modalOpenEdit = true;
+  }
+
+  closeModalEdit(): void {
+    this.modalOpenEdit = false;
+  }
+
   createDeck(formValue: any): void {
+    if (formValue.title === '') {
+      return;
+    }
     var deck = new Deck(
       0,
       formValue.title,
@@ -47,6 +61,30 @@ export class DeckListComponent {
       this.closeModal();
     });
   }
+
+  updateDeck(formValue: any): void {
+    if (formValue.title == '') {
+      console.log(formValue.title);
+      return;
+    }
+    var deck = new Deck(
+      this.selectedDeck.id,
+      formValue.title,
+      new Date(),
+      new Date(),
+      this.user,
+      1 // Remplacer cette valeur par this.user.id
+    );
+    console.log(deck.id);
+    this.deckListService.updateDeck(deck.id, deck).subscribe(d => {
+      const index = this.decks.findIndex(d => d.id === deck.id);
+      if (index > -1) {
+        this.decks[index] = deck;
+      }
+      this.closeModalEdit();
+    });
+  }
+
 
   deleteDeck(id: number): void {
     this.deckListService.deleteDeck(id).subscribe(() => {
