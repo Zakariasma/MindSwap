@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DeckListCardsComponent } from './views/deck-list-cards/deck-list-cards.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeckCardComponent } from './components/deck-card/deck-card.component';
 import { UniversalModalComponent } from './components/universal-modal/universal-modal.component';
 import { UniversalCardComponent } from './components/universal-card/universal-card.component';
@@ -40,7 +39,6 @@ import { ModifyProfilComponent } from './pages/modify-profil/modify-profil.compo
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
