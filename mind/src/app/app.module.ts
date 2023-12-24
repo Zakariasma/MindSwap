@@ -17,6 +17,7 @@ import { ResultComponent } from './views/result/result.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ModifyProfilComponent } from './pages/modify-profil/modify-profil.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ModifyProfilComponent } from './pages/modify-profil/modify-profil.compo
     RegisterComponent,
     LoginComponent,
     ModifyProfilComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

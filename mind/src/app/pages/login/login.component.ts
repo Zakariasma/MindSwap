@@ -79,6 +79,9 @@ export class LoginComponent {
         console.log(decoded);
         this.cookieService.set('name', name, date);
         this.cookieService.set('token', jwt, date);
+        this.userService.getByName(this.cookieService.get("name")).subscribe(user => {
+          this.cookieService.set('id', user.id!.toString(), date);
+        });
         this.resetNotification();
         this.responseNotification.toArray()[1].nativeElement.style.display = 'flex';
         this.waitResetNotification();
