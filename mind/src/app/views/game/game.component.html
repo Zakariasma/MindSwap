@@ -1,6 +1,9 @@
 <app-navbar></app-navbar>
 <div class="container" *ngIf="!showResult">
-  <div class="counter"><h1>Question: {{ reponsesCorrectes }} / {{ cards.length}}</h1></div>
+  <div class="counter">
+    <h1>Question: {{ questionNumber }} / {{ cards.length}}</h1>
+    <h1>Score: {{ reponsesCorrectes }} / {{ cards.length}}</h1>
+  </div>
   <div class="card" (click)="flipCard()" [ngClass]="{'flipped': flipped}" >
     <div class="front">
       <div class="card-title">{{ cards[indexActuel].frontText }}</div>

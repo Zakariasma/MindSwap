@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {ResultService} from "../../_services/result.service";
 import {Result} from "../../models/result";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-result',
@@ -13,9 +14,11 @@ export class ResultComponent {
   @Input() nombreQuestion!: number;
   @Input() DeckId!: number;
   @Output() buttonPressed = new EventEmitter<boolean>();
-  constructor(private router: Router, private ResultService: ResultService ) { }
+  userId!: number;
+  constructor(private router: Router, private ResultService: ResultService,  private cookieService: CookieService ) { }
 
   ngOnInit(): void {
+    this.userId = Number(this.cookieService.get('id'));
     this.insertScort();
   }
   navigateTo(route: string) {
@@ -31,7 +34,7 @@ export class ResultComponent {
       new Date(),
       this.nombreQuestion,
       this.score,
-      1,
+      this.userId,
       this.DeckId
     );
 
