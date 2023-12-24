@@ -12,8 +12,10 @@
         <img *ngIf="card.backImg" class="card-img" src="https://localhost:7150/Images/{{card.backImg}}" alt="Card image cap">
       </div>
     </div>
-    <button class="btn-edit" (click)="openEditModal(card)">Edit Card</button>
+    <div class="btnDiv">
+      <button class="btn-edit" (click)="openEditModal(card)">Edit Card</button>
       <button class="btn-delete" (click)="deleteCard(card)">Delete</button>
+    </div>
   </div>
 </div>
 
@@ -36,7 +38,9 @@
         <label for="backText">Back Text:</label>
         <input type="text" id="backText" name="backText" ngModel>
       </div>
-      <button type="submit">Submit</button>
+      <div class="submitBtn">
+        <button type="submit">Submit</button>
+      </div>
     </form>
   </div>
 </div>
@@ -64,7 +68,9 @@
         <label for="editBackPhoto">Back Photo:</label>
         <input type="file" id="editBackPhoto" name="backPhoto" #backPhoto>
       </div>
-      <button type="submit">Submit</button>
+      <div class="submitBtn">
+        <button type="submit">Submit</button>
+      </div>
     </form>
   </div>
 </div>
