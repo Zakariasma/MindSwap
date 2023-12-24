@@ -138,24 +138,42 @@ img{
   height: 10vh;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  margin-top: 50px
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-.btnAddCard button{
-  width: 100%;
+.btnAddCard .play{
+  width: 20%;
   height: 100%;
-  background-color: #4CAF50;
+  background-color: #2980b9;
   color: white;
   font-size: 16px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  border-radius: 10px;
 }
 
-.btnAddCard button:hover{
-  background-color: #45a049;
+.btnAddCard .play:hover{
+  background-color: #2773a5;
+}
+
+.btnAddCard .create{
+  width: 20%;
+  height: 100%;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  border-radius: 10px;
+}
+
+.btnAddCard .create:hover{
+  background-color: #3a883e;
 }
 
 .btnDiv{

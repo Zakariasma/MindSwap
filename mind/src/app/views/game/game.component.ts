@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Card} from "../../models/card";
 import {DeckListCardsService} from "../../_services/deck-list-cards.service";
 
@@ -16,10 +16,15 @@ export class GameComponent implements OnInit{
   showResult = false;
   cards!: Card[];
 
-  constructor(private deckListCardsService: DeckListCardsService, private router: Router) { }
+  deckId!: number;
+
+  constructor(private deckListCardsService: DeckListCardsService, private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.deckListCardsService.getCards(1).subscribe(cards => {
+    this.route.paramMap.subscribe(params => {
+      this.deckId = Number(params.get('id'))
+    });
+    this.deckListCardsService.getCards(this.deckId).subscribe(cards => {
       this.cards = cards;
     });
   }

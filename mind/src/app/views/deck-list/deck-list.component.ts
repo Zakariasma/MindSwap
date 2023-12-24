@@ -96,11 +96,6 @@ export class DeckListComponent {
     });
   }
 
-  editDeck(deck: Deck): void {
-    localStorage.setItem('deck', JSON.stringify(deck));
-    this.router.navigate(['/deck']);
-  }
-
   goToDeckListCards(idDeck: number): void {
     this.router.navigate(['/deck-list-cards', idDeck]);
   }

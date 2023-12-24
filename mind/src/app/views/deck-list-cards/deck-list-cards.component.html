@@ -13,14 +13,15 @@
       </div>
     </div>
     <div class="btnDiv">
-      <button class="btn-edit" (click)="openEditModal(card)">Edit Card</button>
-      <button class="btn-delete" (click)="deleteCard(card)">Delete</button>
+      <button class="btn-edit" (click)="openEditModal(card)">Modifier</button>
+      <button class="btn-delete" (click)="deleteCard(card)">Supprimer</button>
     </div>
   </div>
 </div>
 
 <div class="btnAddCard">
-  <button (click)="openModal()">Create Card</button>
+  <button class="play" (click)="GoToJouer()">Jouer</button>
+  <button class="create" (click)="openModal()">Nouvelle carte</button>
 </div>
 
 
@@ -31,15 +32,15 @@
     <span class="close" (click)="closeModal()">×</span>
     <form #cardForm="ngForm" (ngSubmit)="createCard(cardForm.value)">
       <div class="form-group">
-        <label for="frontText">Front Text:</label>
+        <label for="frontText">Question</label>
         <input type="text" id="frontText" name="frontText" ngModel>
       </div>
       <div class="form-group">
-        <label for="backText">Back Text:</label>
+        <label for="backText">Réponse</label>
         <input type="text" id="backText" name="backText" ngModel>
       </div>
       <div class="submitBtn">
-        <button type="submit">Submit</button>
+        <button type="submit">Envoyer</button>
       </div>
     </form>
   </div>
@@ -52,24 +53,24 @@
     <span class="close" (click)="closeEditModal()">×</span>
     <form *ngIf="selectedCard" #editCardForm="ngForm" (ngSubmit)="editCard(editCardForm.value)">
       <div class="form-group">
-        <label for="editFrontText">Front Text:</label>
+        <label for="editFrontText">Question</label>
         <input type="text" id="editFrontText" name="frontText" [(ngModel)]="selectedCard.frontText">
       </div>
       <div class="form-group">
-        <label for="editBackText">Back Text:</label>
+        <label for="editBackText">Réponse</label>
         <input type="text" id="editBackText" name="backText" [(ngModel)]="selectedCard.backText">
       </div>
 
       <div class="form-group">
-        <label for="editFrontPhoto">Front Photo:</label>
+        <label for="editFrontPhoto">Photo question</label>
         <input type="file" id="editFrontPhoto" name="frontPhoto" #frontPhoto>
       </div>
       <div class="form-group">
-        <label for="editBackPhoto">Back Photo:</label>
+        <label for="editBackPhoto">Photo réponse</label>
         <input type="file" id="editBackPhoto" name="backPhoto" #backPhoto>
       </div>
       <div class="submitBtn">
-        <button type="submit">Submit</button>
+        <button type="submit">Envoyer</button>
       </div>
     </form>
   </div>

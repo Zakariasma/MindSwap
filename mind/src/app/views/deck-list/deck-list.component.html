@@ -6,11 +6,11 @@
 </div>
 
 <div class="btnAddDeck">
-  <button (click)="openModal()">Create Deck</button>
+  <button (click)="openModal()">Nouveau deck</button>
 </div>
 
-<app-universal-modal [isOpen]="modalOpen" [title]="'Create Deck'" [content]="defaultTitle" (submitEvent)="createDeck($event)" (closeEvent)="closeModal()"></app-universal-modal>
+<app-universal-modal [isOpen]="modalOpen" [title]="'Nouveau deck'" [content]="defaultTitle" (submitEvent)="createDeck($event)" (closeEvent)="closeModal()"></app-universal-modal>
 
-<app-universal-modal *ngIf="selectedDeck" [isOpen]="modalOpenEdit" [title]="'Edit Deck'" [content]="selectedDeck.title" (submitEvent)="updateDeck($event)" (closeEvent)="closeModalEdit()"></app-universal-modal>
+<app-universal-modal *ngIf="selectedDeck" [isOpen]="modalOpenEdit" [title]="'Modifier le deck'" (submitEvent)="updateDeck($event)" (closeEvent)="closeModalEdit()"></app-universal-modal>
 
 

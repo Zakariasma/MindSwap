@@ -129,5 +129,10 @@ export class DeckListCardsComponent {
       this.cards = this.cards.filter(c => c.id !== card.id);
     });
   }
+
+
+  GoToJouer(): void {
+    this.router.navigate(['/game', this.deckId]);
+  }
 }
 

@@ -8,7 +8,7 @@ import {GameComponent} from "./views/game/game.component";
 const routes: Routes = [
   { path: 'deck-list', component: DeckListComponent},
   { path: 'deck-list-cards/:id', component: DeckListCardsComponent},
-  { path: 'game', component: GameComponent},
+  { path: 'game/:id', component: GameComponent},
   { path: 'historique', component: HistoriqueComponent},
   { path: '', redirectTo: '/deck-list', pathMatch: 'full' },
   { path: '**', redirectTo: '/deck-list', pathMatch: 'full' }

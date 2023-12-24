@@ -11,6 +11,7 @@ import {Result} from "../../models/result";
 export class ResultComponent {
   @Input() score!: number ;
   @Input() nombreQuestion!: number;
+  @Input() DeckId!: number;
   @Output() buttonPressed = new EventEmitter<boolean>();
   constructor(private router: Router, private ResultService: ResultService ) { }
 
@@ -31,7 +32,7 @@ export class ResultComponent {
       this.nombreQuestion,
       this.score,
       1,
-      2
+      this.DeckId
     );
 
     this.ResultService.insertResult(result).subscribe(result => {
