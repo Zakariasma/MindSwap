@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { jwtDecode } from 'jwt-decode';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeckListComponent } from './views/deck-list/deck-list.component';
@@ -15,6 +15,9 @@ import { UniversalCardComponent } from './components/universal-card/universal-ca
 import { GameComponent } from './views/game/game.component';
 import { HistoriqueComponent } from './views/historique/historique.component';
 import { ResultComponent } from './views/result/result.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ModifyProfilComponent } from './pages/modify-profil/modify-profil.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { ResultComponent } from './views/result/result.component';
     GameComponent,
     HistoriqueComponent,
     ResultComponent,
+    RegisterComponent,
+    LoginComponent,
+    ModifyProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ import { ResultComponent } from './views/result/result.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
