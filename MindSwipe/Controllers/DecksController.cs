@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace MindSwipe.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class DecksController : ControllerBase
     {
         private readonly MindSwipeContext _context;
@@ -31,6 +32,17 @@ namespace MindSwipe.Controllers
               return NotFound();
           }
             return await _context.Deck.Include(deck => deck.User).ToListAsync();
+        }
+
+        // GET: api/Decks/User/{id}
+        [HttpGet("User/{id}")]
+        public async Task<ActionResult<IEnumerable<Deck>>> GetDecksByUserId(int id)
+        {
+            if (_context.Deck == null)
+            {
+                return NotFound();
+            }
+            return await _context.Deck.Where(deck => deck.UserID == id).Include(deck => deck.User).ToListAsync();
         }
 
         // GET: api/Decks/5
@@ -87,22 +99,26 @@ namespace MindSwipe.Controllers
         [HttpPost]
         public async Task<ActionResult<Deck>> PostDeck(Deck deck)
         {
-          if (_context.Deck == null)
-          {
-              return Problem("Entity set 'MindSwipeContext.Deck'  is null.");
-          }
-            
-            if (deck.User == null)
+            if(deck.Title != null) 
             {
-                Users userFind = _context.Users.Find(deck.UserID);
-                if (userFind != null)
+                if (_context.Deck == null)
                 {
-                    deck.User = userFind;
+                    return Problem("Entity set 'MindSwipeContext.Deck'  is null.");
                 }
+
+                if (deck.User == null)
+                {
+                    Users userFind = _context.Users.Find(deck.UserID);
+                    if (userFind != null)
+                    {
+                        deck.User = userFind;
+                    }
+                }
+                _context.Deck.Add(deck);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetDeck", new { id = deck.Id }, deck);
             }
-            _context.Deck.Add(deck);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetDeck", new { id = deck.Id }, deck);
+            return BadRequest();
         }
 
         // DELETE: api/Decks/5

@@ -27,6 +27,18 @@ namespace MindSwipe.Data
             builder.Entity<Users>()
                 .HasIndex(u => u.Username)
                 .IsUnique();
+
+            builder.Entity<Deck>()
+                .HasMany(d => d.Cards)
+                .WithOne(c => c.Deck)
+                .HasForeignKey(c => c.DeckId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Deck>()
+                .HasMany(d => d.Results)
+                .WithOne(r => r.Deck)
+                .HasForeignKey(r => r.DeckId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<MindSwipe.Models.CardUploadModel>? CardUploadModel { get; set; }
