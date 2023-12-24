@@ -43,7 +43,7 @@ body, html {
   align-items: center;
   font-size: 2em;
   cursor: pointer;
-  transition: transform 1.7s;
+  transition: all 0.5s ease-in-out;
   transform-style: preserve-3d;
   position: relative;
   perspective: 1000px;

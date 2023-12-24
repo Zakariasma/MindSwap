@@ -18,6 +18,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ModifyProfilComponent } from './pages/modify-profil/modify-profil.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

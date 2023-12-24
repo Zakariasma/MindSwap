@@ -39,4 +39,8 @@ export class ResultComponent {
       console.log(result);
     });
   }
+
+  goToHistorique() {
+    this.navigateTo('/historique');
+  }
 }

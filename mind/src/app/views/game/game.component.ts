@@ -14,7 +14,7 @@ export class GameComponent implements OnInit{
   inputValue = '';
   reponsesCorrectes = 0;
   showResult = false;
-  cards!: Card[];
+  cards: Card[] = [];
 
   deckId!: number;
 

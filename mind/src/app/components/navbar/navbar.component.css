@@ -21,3 +21,7 @@
   height: auto;
   object-fit: cover;
 }
+
+h1{
+  cursor: pointer;
+}

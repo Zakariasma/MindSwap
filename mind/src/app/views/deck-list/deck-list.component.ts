@@ -3,6 +3,7 @@ import { DeckListService } from '../../_services/deck-list.service';
 import { Deck } from 'src/app/models/deck';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -17,12 +18,14 @@ export class DeckListComponent {
   modalOpenEdit = false;
   selectedDeck!: Deck;
   defaultTitle: string = 'Default Title';
+  userId!: number;
 
-  constructor(private deckListService: DeckListService, private router: Router) { }
+  constructor(private deckListService: DeckListService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user')!);
-    this.deckListService.getDecks(1).subscribe(decks => {
+    this.userId = Number(this.cookieService.get('id'));
+    console.log(this.userId);
+    this.deckListService.getDecks(this.userId).subscribe(decks => {
       this.decks = decks;
       console.log(this.decks);
     });
@@ -57,7 +60,7 @@ export class DeckListComponent {
       new Date(),
       new Date(),
       this.user,
-      1 // Remplacer cette valeur par this.user.id
+      this.userId // Remplacer cette valeur par this.user.id
     );
     this.deckListService.createDeck(deck).subscribe(deck => {
       this.decks.push(deck);
