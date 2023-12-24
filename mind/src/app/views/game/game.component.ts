@@ -15,6 +15,7 @@ export class GameComponent implements OnInit{
   reponsesCorrectes = 0;
   showResult = false;
   cards: Card[] = [];
+  questionNumber = 1;
 
   deckId!: number;
 
@@ -35,8 +36,8 @@ export class GameComponent implements OnInit{
   }
 
   afficherElementSuivant() {
+    this.questionNumber++;
 
-    // Vérifiez si la réponse est correcte avant de passer à l'élément suivant
     if (this.inputValue.toLowerCase() === this.cards[this.indexActuel].backText.toLowerCase()) {
       this.reponsesCorrectes++;
     }
@@ -44,8 +45,10 @@ export class GameComponent implements OnInit{
     if (this.indexActuel < this.cards.length - 1) {
       this.indexActuel++;
     } else {
-      // À la fin du tableau, rediriger vers un autre composant avec le score
       this.showResult = true;
+      this.indexActuel = 0;
+      this.questionNumber = 1;
+      this.reponsesCorrectes = 0;
       return;
     }
 
@@ -56,8 +59,6 @@ export class GameComponent implements OnInit{
 
 
   rejouer() {
-    this.indexActuel = 0;
-    this.reponsesCorrectes = 0;
     this.showResult = false;
   }
 }
