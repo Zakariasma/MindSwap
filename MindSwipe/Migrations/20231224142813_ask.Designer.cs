@@ -12,8 +12,8 @@ using MindSwipe.Data;
 namespace MindSwipe.Migrations
 {
     [DbContext(typeof(MindSwipeContext))]
-    [Migration("20231223225827_mindswap")]
-    partial class mindswap
+    [Migration("20231224142813_ask")]
+    partial class ask
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -215,7 +215,8 @@ namespace MindSwipe.Migrations
                 {
                     b.HasOne("MindSwipe.Models.Deck", "Deck")
                         .WithMany("Results")
-                        .HasForeignKey("DeckId");
+                        .HasForeignKey("DeckId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MindSwipe.Models.Users", "User")
                         .WithMany("Results")

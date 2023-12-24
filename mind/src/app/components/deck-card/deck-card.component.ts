@@ -11,6 +11,21 @@ export class DeckCardComponent {
   @Output() editEvent = new EventEmitter<void>();
   @Output() deleteEvent = new EventEmitter<void>();
 
+  openModal: boolean = false;
+
+  openModalDelete(event: Event): void {
+    event.stopPropagation();
+    console.log('openModalDelete');
+    this.openModal = true;
+  }
+
+  closeModal(event: Event): void {
+    event.stopPropagation();
+    this.openModal = false;
+  }
+
+
+
   edit(event: Event): void {
     event.stopPropagation();
     this.editEvent.emit();

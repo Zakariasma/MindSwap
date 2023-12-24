@@ -1,16 +1,8 @@
 <app-navbar></app-navbar>
 <div class="inscriptionComponent">
   <div class="inscriptionFormContainer">
-
-    <div class="logoTop">
-      <div class="logoCase">
-        <h1>MindSwap</h1>
-      </div>
-    </div>
-
     <div class="titreComponent">
       <h1>Modifier profil</h1>
-      <hr>
     </div>
 
     <form [formGroup]="register">
@@ -31,17 +23,19 @@
           <div class="boutonInscription" (click)="sendData()">
             <p>Modifier</p><i class="pi pi-send"></i>
           </div>
-          <div class="load">
-            <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
-          </div>
-          <div class="texteError check" #responseNotification>
-            <p>Champs Invalide</p>
-            <p>Problème de champs</p>
-          </div>
-          <div class="texte check" #responseNotification>
-            <p> Modification reussit</p>
-          </div>
+
         </div>
     </form>
   </div>
+</div>
+
+<div class="load">
+  <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
+</div>
+<div class="texteError check" #responseNotification>
+  <p>Champs Invalide</p>
+  <p>Problème de champs</p>
+</div>
+<div class="texte check" #responseNotification>
+  <p> Modification reussit</p>
 </div>

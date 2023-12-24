@@ -37,13 +37,22 @@
           <i class="pi pi-key"></i>
         </div>
       </div>
-      <div class="loginBtn">
-        <a href="">Connexion</a>
-      </div>
-
+        <div class="loginBtn">
+          <a [routerLink]="['/login']">Vous avez déjà un compte ? Se connecter</a>
+        </div>
         <div class="boutonContainer">
           <div class="boutonInscription" (click)="sendData()">
-            <a>Inscription</a>
+            <p>Inscription</p><i class="pi pi-send"></i>
+          </div>
+          <div class="load">
+            <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
+          </div>
+          <div class="texteError check" #responseNotification>
+            <p>Champs Invalide</p>
+            <p>Erreur</p>
+          </div>
+          <div class="texte check" #responseNotification>
+            <p> Reussit </p>
           </div>
         </div>
     </form>

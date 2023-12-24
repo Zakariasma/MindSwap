@@ -213,7 +213,8 @@ namespace MindSwipe.Migrations
                 {
                     b.HasOne("MindSwipe.Models.Deck", "Deck")
                         .WithMany("Results")
-                        .HasForeignKey("DeckId");
+                        .HasForeignKey("DeckId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MindSwipe.Models.Users", "User")
                         .WithMany("Results")

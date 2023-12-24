@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MindSwipe.Migrations
 {
-    public partial class mindswap : Migration
+    public partial class ask : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,7 +106,8 @@ namespace MindSwipe.Migrations
                         name: "FK_Result_Deck_DeckId",
                         column: x => x.DeckId,
                         principalTable: "Deck",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Result_Users_UserId",
                         column: x => x.UserId,

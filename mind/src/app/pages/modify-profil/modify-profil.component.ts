@@ -85,7 +85,7 @@ export class ModifyProfilComponent {
         this.cookieService.set('name', user.username);
         this.waitResetNotification();
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/deck-list']);
         }, 2000);
       },
       error => {

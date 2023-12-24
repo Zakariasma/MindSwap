@@ -29,7 +29,7 @@ export class RegisterComponent {
     this.label.forEach((element, index) => {
       if (index == nombre) {
         element.nativeElement.style.zIndex = '2';
-        element.nativeElement.style.transform = 'translateY(-140%) translateX(15px)';
+        element.nativeElement.style.transform = 'translateY(-165%) translateX(0px)';
         element.nativeElement.style.fontSize = '0.9em';
         element.nativeElement.style.color = '#000';
         this.input.toArray()[index].nativeElement.style.border = '2px solid black';

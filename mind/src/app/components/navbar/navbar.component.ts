@@ -9,6 +9,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NavbarComponent {
 
+  openModal: boolean = false;
+
   constructor(
     private router: Router,
     private cookieService: CookieService
@@ -22,4 +24,13 @@ export class NavbarComponent {
   goToHomePage(): void {
     this.router.navigate(['/deck-list']);
   }
+
+  openModalDeconnection(): void {
+    this.openModal = true;
+  }
+
+  closeModal(): void {
+    this.openModal = false;
+  }
+
 }

@@ -194,20 +194,17 @@ form{
     @extend .flex-center;
     width: 20%;
     height: 82%;
+    padding-top: 1rem;
     border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.322);
     color: rgba(0, 0, 0, 0.795);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-
-  i{
-    margin-left: 10px;
-    margin-top: 2px;
-  }
+    background-color: #3e86d3;
+    color: white;
   }
   .boutonInscription:hover{
-    border: 2px solid black;
-    color: black;
+    background-color: #326faf;
+    color: white;
   }
   .load{
     @extend .flex-center;

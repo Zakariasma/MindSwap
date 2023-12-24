@@ -106,5 +106,6 @@ export class DeckListComponent {
   goToHistorique(): void {
     this.router.navigate(['/historique']);
   }
+
 }
 

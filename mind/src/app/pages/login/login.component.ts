@@ -40,7 +40,8 @@ export class LoginComponent {
       if (index == nombre) {
         element.nativeElement.style.zIndex = '2';
         element.nativeElement.style.transform = 'translateY(-140%)';
-        element.nativeElement.style.left = '30px';
+        element.nativeElement.style.left = '60px';
+        element.nativeElement.style.top = '30px';
         element.nativeElement.style.fontSize = '0.9em';
         element.nativeElement.style.color = '#000';
         this.input.toArray()[index].nativeElement.style.border = '2px solid #000';
@@ -55,7 +56,7 @@ export class LoginComponent {
         if (index == nombre) {
           element.nativeElement.style.zIndex = '0';
           element.nativeElement.style.transform = 'none';
-          element.nativeElement.style.left = '10px';
+          element.nativeElement.style.left = '60px';
           element.nativeElement.style.fontSize = 'initial';
           element.nativeElement.style.color = 'rgba(0, 0, 0, 0.322)';
           inputElement.style.border = '2px solid rgba(0, 0, 0, 0.322)';
@@ -92,6 +93,7 @@ export class LoginComponent {
       },
       error => {
         console.error(error);
+        console.log(error.status);
         this.resetNotification();
         this.responseNotification.toArray()[2].nativeElement.style.display = 'flex';
         this.waitResetNotification();
@@ -113,7 +115,7 @@ export class LoginComponent {
   waitResetNotification() {
     setTimeout(() => {
       this.resetNotification();
-    }, 3000);
+    }, 10000);
   }
 
 

@@ -175,6 +175,7 @@ form{
 
 .sendContainerLoad{
   display: flex;
+  flex-direction: column;
   width: 80%;
   height: 50px;
   align-items: center;
@@ -193,6 +194,8 @@ form{
     color: rgba(0, 0, 0, 0.795);
     cursor: pointer;
     background-color: #3e86d3;
+    padding-top: 1rem;
+;
   }
 
   .boutonEnvoyer:hover{

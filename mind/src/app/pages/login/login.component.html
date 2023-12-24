@@ -20,9 +20,15 @@
         <div class="forgotPassword">
           <p>Vous n'avez pas encore de compte ? <a routerLink="/register"> S'inscrire maintenant</a></p>
         </div>
+
         <div class="sendContainerLoad">
           <div class="boutonEnvoyer" (click)="login()">
-            <a class="btnConnexion">Connexion</a>
+            <p class="btnConnexion">Connexion</p>
+          </div>
+          <div class="load">
+            <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
+            <i class="pi pi-check check" style="color: green;" #responseNotification></i>
+            <p style="color: red; display: none;" #responseNotification>Mot de passe ou nom d'utilisateur incorrect</p>
           </div>
         </div>
       </form>

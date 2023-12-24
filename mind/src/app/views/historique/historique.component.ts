@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ResultService} from "../../_services/result.service";
 import {Historique} from "../../models/historique";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-historique',
@@ -9,10 +10,11 @@ import {Historique} from "../../models/historique";
 })
 export class HistoriqueComponent {
   results!: Historique[];
-  constructor(private resultService: ResultService) { }
+  constructor(private resultService: ResultService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.resultService.getResults(1).subscribe(results => {
+    let userId = Number(this.cookieService.get('id'));
+    this.resultService.getResults(userId).subscribe(results => {
       this.results = results;
       console.log(this.results);
     });

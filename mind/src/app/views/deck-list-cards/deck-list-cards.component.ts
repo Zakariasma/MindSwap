@@ -132,7 +132,8 @@ export class DeckListCardsComponent {
 
 
   GoToJouer(): void {
-    this.router.navigate(['/game', this.deckId]);
+    if(this.cards.length != 0)
+      this.router.navigate(['/game', this.deckId]);
   }
 }
 

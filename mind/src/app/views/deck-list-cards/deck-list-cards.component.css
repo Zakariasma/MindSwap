@@ -29,6 +29,7 @@
 }
 
 img {
+  object-fit: cover;
   width: 150px;
 }
 
@@ -223,6 +224,7 @@ img{
   height: 100%;
   backface-visibility: hidden;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .flip-card-front {

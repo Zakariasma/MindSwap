@@ -171,6 +171,7 @@ form{
   width: 100%;
   height: 50%;
   align-items: center;
+  justify-content: center;
 
   .boutonInscription{
     @extend .flex-center;
@@ -181,11 +182,8 @@ form{
     color: rgba(0, 0, 0, 0.795);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    padding-top: 1em;
 
-  i{
-    margin-left: 10px;
-    margin-top: 2px;
-  }
   }
   .boutonInscription:hover{
     border: 2px solid black;
@@ -274,11 +272,6 @@ form{
 
 
 @media (max-width:320px) and (min-width: 0px) {
-
-  .inscriptionComponent{
-    height: 220vh;
-    margin-top: 50px;
-  }
 
   .inscriptionFormContainer{
     width: 95%;
@@ -370,12 +363,6 @@ form{
 }
 
 @media (max-width:480px)  and (min-width: 321px) {
-
-  .inscriptionComponent{
-    height: 170vh;
-    margin-top: 50px;
-    min-height: 1300px;
-  }
 
   .inscriptionFormContainer{
     width: 95%;
@@ -469,16 +456,10 @@ form{
 
 @media (max-width:960px) and (min-width:600px){
 
-  .inscriptionComponent{
-    height: 170vh;
-    margin-top: 50px;
-    max-height: 170vh;
-    min-height: 1700px;
-  }
 
   .inscriptionFormContainer{
-    width: 95%;
-    height: 85%;
+    width: 65%;
+    height: 40%;
 
     .accepterPolitique{
       width: 100%;
@@ -567,10 +548,6 @@ form{
 
 @media (max-width:1300px) and (min-width:960px){
 
-  .inscriptionComponent{
-    height: 170vh;
-    margin-top: 50px;
-  }
 
   .inscriptionFormContainer{
     width: 95%;
@@ -648,10 +625,6 @@ form{
 
 @media (max-width:960px) and (min-width:500px) and (orientation: landscape){
 
-  .inscriptionComponent{
-    height: 400vh;
-    margin-top: 50px;
-  }
 
   .inscriptionFormContainer{
     width: 95%;

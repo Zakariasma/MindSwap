@@ -13,7 +13,7 @@ namespace MindSwipe.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CardsController : ControllerBase
     {
         private readonly MindSwipeContext _context;
