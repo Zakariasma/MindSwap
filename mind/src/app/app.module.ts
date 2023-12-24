@@ -12,6 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeckCardComponent } from './components/deck-card/deck-card.component';
 import { UniversalModalComponent } from './components/universal-modal/universal-modal.component';
 import { UniversalCardComponent } from './components/universal-card/universal-card.component';
+import { GameComponent } from './views/game/game.component';
+import { HistoriqueComponent } from './views/historique/historique.component';
+import { ResultComponent } from './views/result/result.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { UniversalCardComponent } from './components/universal-card/universal-ca
     DeckCardComponent,
     UniversalModalComponent,
     UniversalCardComponent,
+    GameComponent,
+    HistoriqueComponent,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,
