@@ -41,7 +41,7 @@
 
 .containeurDeck{
   width: 100%;
-  height: 90vh;
+  height: 68vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
@@ -50,27 +50,44 @@
 
 .btnAddDeck{
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  position: absolute;
-  bottom: 0;
+  margin-top: 50px;
 }
 
-
-.btnAddDeck button{
-  width: 100%;
+.btnAddDeck .newDek{
+  width: 20%;
   height: 100%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   font-size: 16px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  border-radius: 10px;
 }
 
-.btnAddDeck button:hover{
-  background-color: #45a049;
+.btnAddDeck .newDek:hover{
+  background-color: #409443;
+}
+
+
+
+.btnAddDeck .historique{
+  width: 20%;
+  height: 100%;
+  background-color: #2980b9;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  border-radius: 10px;
+}
+
+.btnAddDeck .historique:hover{
+  background-color: #236c9c;
 }

@@ -9,7 +9,6 @@
 
     <div class="titreComponent">
       <h1>S'inscrire</h1>
-      <hr>
     </div>
 
     <form [formGroup]="register">
@@ -38,20 +37,13 @@
           <i class="pi pi-key"></i>
         </div>
       </div>
+      <div class="loginBtn">
+        <a href="">Connexion</a>
+      </div>
 
         <div class="boutonContainer">
           <div class="boutonInscription" (click)="sendData()">
-            <p>Inscription</p><i class="pi pi-send"></i>
-          </div>
-          <div class="load">
-            <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
-          </div>
-          <div class="texteError check" #responseNotification>
-            <p>Champs Invalide</p>
-            <p>Erreur</p>
-          </div>
-          <div class="texte check" #responseNotification>
-            <p> Reussit </p>
+            <a>Inscription</a>
           </div>
         </div>
     </form>

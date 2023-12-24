@@ -7,7 +7,8 @@
 </div>
 
 <div class="btnAddDeck">
-  <button (click)="openModal()">Nouveau deck</button>
+  <button class="newDek" (click)="openModal()">Nouveau deck</button>
+  <button class="historique" (click)="goToHistorique()" >Historique</button>
 </div>
 
 <app-universal-modal [isOpen]="modalOpen" [title]="'Nouveau deck'" [content]="defaultTitle" (submitEvent)="createDeck($event)" (closeEvent)="closeModal()"></app-universal-modal>

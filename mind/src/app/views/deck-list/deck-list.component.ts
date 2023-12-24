@@ -102,5 +102,9 @@ export class DeckListComponent {
   goToDeckListCards(idDeck: number): void {
     this.router.navigate(['/deck-list-cards', idDeck]);
   }
+
+  goToHistorique(): void {
+    this.router.navigate(['/historique']);
+  }
 }
 

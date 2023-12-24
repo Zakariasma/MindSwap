@@ -16,6 +16,8 @@
 
 
 .btnConnexion{
+  text-decoration: none;
+  color: white;
   cursor: pointer;
 }
 
@@ -63,14 +65,15 @@
 
 .titreForm{
   display: flex;
-  width: 100%;
+  width: 80%;
   height: 15%;
   align-items: center;
+  justify-content: center;
 
   h1{
-    font-size: 2em;
+    margin-top: 85px;
+    font-size: 2.5em;
     font-weight: 500;
-    margin-left: 3%;
   }
 
   hr{
@@ -85,8 +88,9 @@
 form{
   display: flex;
   width: 100%;
-  height: 55%;
+  height: 90%;
   flex-direction: column;
+  margin-top: 60px;
 
   .inputFirst{
     display: flex;
@@ -95,11 +99,11 @@ form{
     height: 25%;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     position: relative;
 
     input{
-      width: 100%;
-      height: 50%;
+      width: 80%;
       border: 2px solid rgba(0, 0, 0, 0.322);
       border-radius: 5px;
       z-index: 1;
@@ -122,7 +126,7 @@ form{
     label{
       position: absolute;
       transition: all 0.3s ease-in-out;
-      left: 10px;
+      left: 60px;
       color: rgba(0, 0, 0, 0.322);
       background-color: white;
       z-index: 0;
@@ -140,18 +144,15 @@ form{
 
 
   }
-
-  .marginInput{
-    margin-bottom: 20px;
-  }
 }
 
 .forgotPassword{
   display: flex;
-  width: 84%;
+  width: 80%;
   margin-left: 3%;
   height: 15%;
   align-items: center;
+  justify-content: center;
 
   a{
     text-decoration: none;
@@ -166,6 +167,7 @@ form{
   }
 
   p{
+    text-align: center;
     font-size: 1em;
     font-weight: 500;
   }
@@ -173,43 +175,31 @@ form{
 
 .sendContainerLoad{
   display: flex;
-  width: 90%;
-  margin-left: 3%;
-  height: 22%;
-  margin-top: 4%;
+  width: 80%;
+  height: 50px;
   align-items: center;
+  justify-content: center;
 
   .boutonEnvoyer{
-    @extend .flex-center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30%;
-    height: 95%;
+    height: 100%;
     transition: all 0.3s ease-in-out;
     border: 2px solid transparent;
     border-radius: 10px;
     border: 2px solid rgba(0, 0, 0, 0.322);
     color: rgba(0, 0, 0, 0.795);
-
-    i{
-      margin-left: 10px;
-      margin-top: 2px;
-    }
+    cursor: pointer;
+    background-color: #3e86d3;
   }
 
   .boutonEnvoyer:hover{
-      border: 2px solid black;
-      color: black;
+    background-color: #3675b9;
+    color: white;
   }
 
-  .load{
-    @extend .flex-center;
-    width: 15%;
-    height: 100%;
-  }
-
-  .loader, .check,.not{
-    display: none;
-    font-size: 2em;
-  }
 }
 
 
@@ -332,7 +322,6 @@ form{
 
   .login{
     height: 100vh;
-    margin-top: 50px;
   }
 
   .loginForm{
@@ -409,7 +398,7 @@ form{
 
   form{
     width: 100%;
-    height: 75%;
+    height: 100%;
     flex-direction: column;
 
     .inputFirst{
