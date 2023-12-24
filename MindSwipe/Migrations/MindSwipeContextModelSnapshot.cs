@@ -66,6 +66,30 @@ namespace MindSwipe.Migrations
                     b.ToTable("Card");
                 });
 
+            modelBuilder.Entity("MindSwipe.Models.CardUploadModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BackImgName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("CardID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FrontImgName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CardUploadModel");
+                });
+
             modelBuilder.Entity("MindSwipe.Models.Deck", b =>
                 {
                     b.Property<int>("Id")
@@ -170,7 +194,8 @@ namespace MindSwipe.Migrations
                 {
                     b.HasOne("MindSwipe.Models.Deck", "Deck")
                         .WithMany("Cards")
-                        .HasForeignKey("DeckId");
+                        .HasForeignKey("DeckId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Deck");
                 });

@@ -76,13 +76,14 @@ export class LoginComponent {
         date.setTime(date.getTime() + (1 * 60 * 60 * 1000));
         const decoded = jwtDecode<JwtPayload>(jwt);
         let name = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+        console.log(decoded);
         this.cookieService.set('name', name, date);
         this.cookieService.set('token', jwt, date);
         this.resetNotification();
         this.responseNotification.toArray()[1].nativeElement.style.display = 'flex';
         this.waitResetNotification();
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/deck-list']);
         }, 500);
 
       },
