@@ -46,9 +46,6 @@ export class GameComponent implements OnInit{
       this.indexActuel++;
     } else {
       this.showResult = true;
-      this.indexActuel = 0;
-      this.questionNumber = 1;
-      this.reponsesCorrectes = 0;
       return;
     }
 
@@ -59,6 +56,9 @@ export class GameComponent implements OnInit{
 
 
   rejouer() {
+    this.indexActuel = 0;
+    this.questionNumber = 1;
+    this.reponsesCorrectes = 0;
     this.showResult = false;
   }
 }
