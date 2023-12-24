@@ -28,34 +28,57 @@
   color: black;
 }
 
+img {
+  width: 150px;
+}
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  overflow: hidden;
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+
 }
 
-/* The Close Button */
+.submitBtn{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
 .close {
+  position: absolute;
+  right: 25px;
+  top: 0;
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -67,6 +90,36 @@
   cursor: pointer;
 }
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3498db;
+}
+
+
 img{
   width: 100px;
 
@@ -74,7 +127,7 @@ img{
 
 .deck-container{
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
@@ -87,8 +140,7 @@ img{
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 0;
+  margin-top: 50px
 }
 
 .btnAddCard button{
@@ -106,12 +158,31 @@ img{
   background-color: #45a049;
 }
 
+.btnDiv{
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnDiv button{
+  border-radius: 10px;
+  width: 48%;
+  height: 100%;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
 .flip-card {
   background-color: transparent;
-  width: 300px;
+  width: 250px;
   height: 200px;
   perspective: 1000px;
   margin: 50px;
+  border-radius: 10px;
 }
 
 .flip-card-inner {
@@ -122,6 +193,7 @@ img{
   transition: transform 0.6s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -133,6 +205,7 @@ img{
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  border-radius: 10px;
 }
 
 .flip-card-front {

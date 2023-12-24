@@ -6,7 +6,9 @@
         <label for="title">{{ title }}</label>
         <input type="text" id="title" name="title" [(ngModel)]="content" (ngModelChange)="formValue=$event">
       </div>
-      <button type="submit">Submit</button>
+      <div class="submitBtn">
+        <button type="submit">Submit</button>
+      </div>
     </form>
   </div>
 </div>
