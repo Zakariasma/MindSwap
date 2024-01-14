@@ -14,6 +14,7 @@ export class RegisterComponent {
   @ViewChildren('label') label!: QueryList<ElementRef>;
   @ViewChildren('input') input!: QueryList<ElementRef>;
   @ViewChildren('responseNotification') responseNotification!: QueryList<ElementRef>;
+  showLoader = false;
 
   register = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]),
@@ -53,6 +54,7 @@ export class RegisterComponent {
   }
 
   sendData(){
+    this.showLoader = true;
     if (this.register.valid) {
     this.resetNotification();
     this.responseNotification.toArray()[0].nativeElement.style.display = 'flex';
@@ -66,6 +68,7 @@ export class RegisterComponent {
         this.resetNotification();
         this.responseNotification.toArray()[2].nativeElement.style.display = 'flex';
         this.waitResetNotification();
+        this.showLoader = false;
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000);
@@ -73,7 +76,7 @@ export class RegisterComponent {
       error => {
         console.log(error['error']);
         if(error['error'] == "Champs invalide"){
-
+          this.showLoader = false;
         }
         this.resetNotification();
         this.responseNotification.toArray()[1].nativeElement.style.display = 'flex';

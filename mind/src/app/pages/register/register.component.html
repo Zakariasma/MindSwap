@@ -44,7 +44,7 @@
           <div class="boutonInscription" (click)="sendData()">
             <p>Inscription</p><i class="pi pi-send"></i>
           </div>
-          <div class="load">
+          <div class="load" *ngIf="showLoader">
             <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
           </div>
           <div class="texteError check" #responseNotification>

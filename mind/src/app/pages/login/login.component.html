@@ -25,7 +25,7 @@
           <div class="boutonEnvoyer" (click)="login()">
             <p class="btnConnexion">Connexion</p>
           </div>
-          <div class="load">
+          <div class="load" *ngIf="showLoader">
             <i class="pi pi-spin pi-spinner loader" #responseNotification></i>
             <i class="pi pi-check check" style="color: green;" #responseNotification></i>
             <p style="color: red; display: none;" #responseNotification>Mot de passe ou nom d'utilisateur incorrect</p>

@@ -26,6 +26,7 @@ export class LoginComponent {
   @ViewChildren('label') label!: QueryList<ElementRef>;
   @ViewChildren('input') input!: QueryList<ElementRef>;
   @ViewChildren('responseNotification') responseNotification!: QueryList<ElementRef>;
+  showLoader = false;
 
 
   loginForm = new FormGroup({
@@ -66,11 +67,10 @@ export class LoginComponent {
   }
 
   login() {
-
+    this.showLoader = true;
     if (this.loginForm.valid && !this.cookieService.check('jwt')) {
     let user:User = new User(this.loginForm.value.username!, this.loginForm.value.password!,'');
     this.resetNotification();
-    this.responseNotification.toArray()[0].nativeElement.style.display = 'flex';
     this.userService.login(user).subscribe(
       (jwt:any) => {
         let date = new Date();
@@ -86,6 +86,7 @@ export class LoginComponent {
         this.resetNotification();
         this.responseNotification.toArray()[1].nativeElement.style.display = 'flex';
         this.waitResetNotification();
+        this.showLoader = false;
         setTimeout(() => {
           this.router.navigate(['/deck-list']);
         }, 500);
@@ -97,6 +98,7 @@ export class LoginComponent {
         this.resetNotification();
         this.responseNotification.toArray()[2].nativeElement.style.display = 'flex';
         this.waitResetNotification();
+        this.showLoader = false;
       }
     );
     }
